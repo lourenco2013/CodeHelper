@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="CodeHelper - Assistente pessoal de programação para analisar e corrigir código."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+    <title>CodeHelper</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CABEÇALHO
+         ===================================================== -->
+
+    <header class="cabecalho">
+
+        <div
+            class="logo"
+            aria-label="CodeHelper"
+        >
+            💻 CodeHelper
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+         ===================================================== -->
+
+    <main>
+
+        <section
+            class="container"
+            aria-labelledby="tituloPrincipal"
+        >
+
+            <!-- =================================================
+                 TOPO
+                 ================================================= -->
+
+            <div class="topo">
+
+                <h1 id="tituloPrincipal">
+                    🧠 CodeHelper
+                </h1>
+
+                <p id="subtitulo">
+                    O teu assistente pessoal de programação
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 EDITOR
+                 ================================================= -->
+
+            <section
+                class="editor"
+                aria-labelledby="tituloEditor"
+            >
+
+                <h2
+                    id="tituloEditor"
+                    class="sr-only"
+                >
+                    Editor de código
+                </h2>
+
+
+                <!-- =================================================
+                     LINGUAGEM
+                     ================================================= -->
+
+                <div class="campo">
+
+                    <label for="linguagem">
+                        Linguagem
+                    </label>
+
+                    <select
+                        id="linguagem"
+                        name="linguagem"
+                        autocomplete="off"
+                    >
+
+                        <option value="javascript">
+                            JavaScript
+                        </option>
+
+                        <option value="python">
+                            Python
+                        </option>
+
+                        <option value="html">
+                            HTML
+                        </option>
+
+                        <option value="css">
+                            CSS
+                        </option>
+
+                        <option value="java">
+                            Java
+                        </option>
+
+                        <option value="csharp">
+                            C#
+                        </option>
+
+                        <option value="cpp">
+                            C++
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- =================================================
+                     CÓDIGO
+                     ================================================= -->
+
+                <div class="campo">
+
+                    <label for="codigo">
+                        Código
+                    </label>
+
+                    <textarea
+                        id="codigo"
+                        name="codigo"
+                        placeholder="Cola aqui o teu código..."
+                        spellcheck="false"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        autocorrect="off"
+                        aria-describedby="ajudaCodigo"
+                    ></textarea>
+
+                    <small
+                        id="ajudaCodigo"
+                        class="campo-ajuda"
+                    >
+                        Cola ou escreve aqui o código que queres analisar.
+                    </small>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA
+                     ================================================= -->
+
+                <div class="campo">
+
+                    <label for="pergunta">
+                        Pergunta
+                    </label>
+
+                    <textarea
+                        id="pergunta"
+                        name="pergunta"
+                        placeholder="Ex: Porque é que este código dá erro?"
+                        spellcheck="true"
+                        autocomplete="off"
+                        aria-describedby="ajudaPergunta"
+                    ></textarea>
+
+                    <small
+                        id="ajudaPergunta"
+                        class="campo-ajuda"
+                    >
+                        Explica o que queres saber sobre o código.
+                    </small>
+
+                </div>
+
+
+                <!-- =================================================
+                     BOTÕES
+                     ================================================= -->
+
+                <div
+                    class="botoes"
+                    role="group"
+                    aria-label="Ações do código"
+                >
+
+                    <button
+                        type="button"
+                        id="analisar"
+                        class="botao-principal"
+                    >
+                        🔍 Analisar código
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="corrigir"
+                        class="botao-corrigir"
+                    >
+                        🔧 Corrigir código
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="limpar"
+                        class="botao-limpar"
+                    >
+                        🗑️ Limpar
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     ESTADO DE PROCESSAMENTO
+                     ================================================= -->
+
+                <div
+                    id="estadoProcessamento"
+                    class="estado-processamento"
+                    role="status"
+                    aria-live="polite"
+                    aria-hidden="true"
+                >
+                    <span
+                        class="spinner"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span id="textoProcessamento">
+                        A processar...
+                    </span>
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RESPOSTA
+                 ================================================= -->
+
+            <section
+                class="resposta"
+                aria-labelledby="tituloResposta"
+            >
+
+                <!-- =================================================
+                     CABEÇALHO DA RESPOSTA
+                     ================================================= -->
+
+                <div class="resposta-topo">
+
+                    <h2 id="tituloResposta">
+                        💡 Resposta
+                    </h2>
+
+
+                    <button
+                        type="button"
+                        id="copiar"
+                        class="botao-copiar"
+                        title="Copiar resposta"
+                    >
+                        📋 Copiar
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     CONTEÚDO DA RESPOSTA
+                     ================================================= -->
+
+                <div
+                    id="textoResposta"
+                    class="texto-resposta"
+                    aria-live="polite"
+                >
+
+                    <p class="placeholder">
+                        A resposta aparecerá aqui.
+                    </p>
+
+
+                    <!-- =================================================
+                         EXPLICAÇÃO
+                         ================================================= -->
+
+                    <div
+                        id="explicacaoErro"
+                        class="resultado-secao"
+                        hidden
+                    >
+
+                        <h3>
+                            📝 Explicação
+                        </h3>
+
+                        <p id="textoExplicacao"></p>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         CÓDIGO CORRIGIDO
+                         ================================================= -->
+
+                    <div
+                        id="codigoCorrigido"
+                        class="resultado-secao codigo-resultado"
+                        hidden
+                    >
+
+                        <div class="titulo-codigo">
+
+                            <h3>
+                                🔧 Código corrigido
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                id="copiarCodigo"
+                                class="botao-copiar-codigo"
+                                title="Copiar código corrigido"
+                            >
+                                📋 Copiar código
+                            </button>
+
+                        </div>
+
+
+                        <pre><code id="textoCodigo"></code></pre>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         BOTÕES FLUTUANTES - CANTO INFERIOR ESQUERDO
+         ===================================================== -->
+
+    <div
+        class="botoes-flutuantes-esquerda"
+        aria-label="Opções"
+    >
+
+        <!-- =================================================
+             IDIOMA
+             ================================================= -->
+
+        <button
+            type="button"
+            id="idiomaBotao"
+            title="Alterar idioma"
+            aria-label="Alterar idioma"
+            aria-haspopup="true"
+            aria-expanded="false"
+        >
+            🌐
+        </button>
+
+
+        <!-- =================================================
+             LOGIN
+             ================================================= -->
+
+        <button
+            type="button"
+            id="loginBotao"
+            title="Login"
+            aria-label="Login"
+        >
+            👤
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         BOTÃO DO TEMA - CANTO INFERIOR DIREITO
+         ===================================================== -->
+
+    <button
+        type="button"
+        id="temaBotao"
+        title="Alterar tema"
+        aria-label="Alterar tema"
+    >
+        ☀️
+    </button>
+
+
+    <!-- =====================================================
+         AVISO / NOTIFICAÇÃO
+         ===================================================== -->
+
+    <div
+        id="notificacao"
+        class="notificacao"
+        role="status"
+        aria-live="polite"
+        aria-hidden="true"
+    >
+        <span id="textoNotificacao"></span>
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

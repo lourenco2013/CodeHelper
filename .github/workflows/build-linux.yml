@@ -1,0 +1,33 @@
+name: Build CodeHelper Linux
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Gerar AppImage
+        run: npm run build -- --linux AppImage
+
+      - name: Guardar AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: CodeHelper-Linux
+          path: dist/*.AppImage
